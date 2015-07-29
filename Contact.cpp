@@ -5,6 +5,7 @@
  *      Author: Maria Piletskaya
  */
 //one more test
+//test
 #include "Contact.h"
 #include "ContactList.h"
 #include <iostream>
