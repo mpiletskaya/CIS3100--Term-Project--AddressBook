@@ -13,6 +13,7 @@ class Contact //define a class
 {
 private:
 	int id;
+	//add a comment
 	std::string firstName;
 	std::string lastName;
 	std::string homePhone;
