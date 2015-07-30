@@ -56,7 +56,7 @@ void ContactList::readData(){
 				case 1: contact.setFirstName(field);break;
 				case 2: contact.setLastName(field);break;
 				case 3: contact.setHomePhone(field);break;
-				case 4: contact.setWorkPhone(field);break;
+				case 4: contact.setAddress(field);break;
 				case 5: contact.setEmail(field);break;
 				case 6: contact.setJob(field);break;
 				case 7: contact.setCompany(field);break;
@@ -79,7 +79,7 @@ void ContactList :: displayList(vector <Contact> list)
 	} else {
 		//display list header
 		cout<<"________________________________________________________________________________"<<endl;
-		cout <<left <<setw(3)<<"Id"<<setw(12)<<"First Name"<<setw(12)<<"Last Name"<<setw(16)<<"Home Phone #"<<setw(26)<<"Email"<<setw(16)<<"Position"<<endl;
+		cout <<left <<setw(4)<<"Id"<<setw(12)<<"First Name"<<setw(12)<<"Last Name"<<setw(12)<<"Address"<<setw(14)<<"Home Phone #"<<setw(24)<<"Email"<<setw(11)<<"Position"<<setw(13)<<"Company"<<endl;
 		//display the contacts
 		for (size_t i= 0; i < list.size(); i++)
 		{
@@ -120,4 +120,61 @@ void ContactList :: displayList(vector <Contact> list)
 			}
 		}
 	}
+ }
+
+ //Mel Romero
+ vector<Contact> ContactList:: searchByCName(string lname)
+{
+	if(!flist.empty())
+	{
+		//Remove all elements from the vector 'clist'
+		flist.clear();
+	}
+	for(int i = 0; i < clist.size(); i++)
+	{
+		/* use '<= 0' here so that it's not case sensitive; it'll also count if 
+		all compared characters match but the compared string is shorter.*/
+		if (clist[i].getCompany().compare(lname)==0)
+			flist.push_back(clist[i]);
+	}
+	return flist;
+}
+
+ //Mel Romero
+ void ContactList:: AddContact(){
+	
+	 string newcontact, firstname, lastname, address, homephone, email, jobtitle,company;
+	 
+	 char cont = 'y';
+	 
+	 fstream file ("contacts.csv", ios:: in |ios::out|ios::app);
+	
+	if (!file.is_open()){
+		 
+	cout <<"Could not open the file"<<endl;
+
+	 }
+
+	do
+{ 
+		cout << "Enter a new contact (id, first name, last name, address, email, home phone, job title, company" << endl;
+		cout << "Enter your new contact's first name: " << endl;
+		cin >> firstname;
+		cout << "Enter your new contact's last name: " << endl;
+		cin >> lastname;
+		cout << "Enter your new contact's address: " << endl;
+		cin >> address;
+		cout << "Enter your new contact's home phone: " << endl;
+		cin >> homephone;
+		cout << "Enter your new contact's job title: " << endl;
+		cin >> jobtitle;
+		cout << "Enter your new contact's company: " << endl;
+		cin >> company;
+		newcontact = firstname+","+lastname+","+address+","+email+","+homephone+","+jobtitle+","+company;
+		file << newcontact << endl;
+		cout << "Enter another grade? (y|n) ";
+		cin >> cont;
+	 
+	 } while (cont == 'y');
+		 file.close();
  }
