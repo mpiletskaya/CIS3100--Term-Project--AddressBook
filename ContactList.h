@@ -31,8 +31,14 @@ public:
 	//does a search by last name
 	std::vector<Contact> searchByLName(std::string);
 
+	//does a search by company name MR
+	std::vector<Contact> searchByCName(std::string);
+
 	//sort the list of contacts alphabetically by last name(ascending)
 	void sortAlphabetically();
+
+	//adds a new contact MR
+	void AddContact();
 
 };
 

@@ -33,11 +33,12 @@ int Menu::showMenu()
       cout << "|                                     |" << endl;
       cout << "| 1. Show all contacts                |" << endl;
       cout << "| 2- Search for an entry by last name |" << endl;
-	  cout << "| 3- Sort by last name                |" << endl;
-      cout << "| 4- Add a contact                    |" << endl;
-	  cout << "| 5- Edit a contact                   |" << endl;
-	  cout << "| 6- Delete a contact                 |" << endl;
-      cout << "| 7- Exit                             |" << endl;
+	  cout << "| 3- Search for by company name       |" << endl;
+	  cout << "| 4- Sort by last name                |" << endl;
+      cout << "| 5- Add a contact                    |" << endl;
+	  cout << "| 6- Edit a contact                   |" << endl;
+	  cout << "| 7- Delete a contact                 |" << endl;
+      cout << "| 8- Exit                             |" << endl;
       cout << "|_____________________________________|" << endl;
 	
 		cin >> choice;
@@ -47,11 +48,12 @@ int Menu::showMenu()
 	{
 		case 1:showAll();break;
 		case 2:filterList();break;
-		case 3:sortLName();break;
-		case 4:;break;
-		case 5:;break;
+		case 3:filterList2();break; //Mel Romero
+		case 4:sortLName();break;
+		case 5:AddName(); break; //Mel Romero
 		case 6:;break;
-		case 7:goto stop;break;
+		case 7:;break;
+		case 8:goto stop;break;
 		default:cout <<"Goodbye ..";
 					goto stop;
 	}
@@ -83,4 +85,19 @@ void Menu::sortLName()
 	cl.displayList(cl.getList());
 }
 
-/// hiiii
+void Menu::filterList2() // Mel Romero
+{
+	cl.readData();
+	string input;
+	cout << "Enter a company name(Case sensitive): ";
+	cin >> input;
+
+	cl.displayList(cl.searchByCName(input));
+}
+
+void Menu::AddName() // Mel Romero
+{
+	cl.readData();
+	cl.displayList(cl.getList());
+	cl.AddContact();
+}

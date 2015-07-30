@@ -17,7 +17,7 @@ private:
 	std::string firstName;
 	std::string lastName;
 	std::string homePhone;
-	std::string workPhone;
+	std::string Address; //changed workphone to Address MR
 	std::string email;
 	std::string companyName;
 	std::string jobTitle;
@@ -40,8 +40,8 @@ public:
 	std::string getHomePhone();
 	void setHomePhone(std::string homePhone);
 
-	std::string getWorkPhone();
-	void setWorkPhone(std::string workPhone);
+	std::string getAddress(); //changed workphone to Address MR
+	void setAddress(std::string Address);
 
 	std::string getEmail();
 	void setEmail(std::string email);

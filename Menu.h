@@ -18,6 +18,8 @@ public:
 	void showAll();
 
 	void filterList();
-	void sortLName();
+	void filterList2(); //filter to search for contact by company name MR
+	void sortLName(); 
+	void AddName(); // function to add new contact MR
 };
 
