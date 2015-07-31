@@ -17,7 +17,7 @@ public:
 	//shows all contacts stored in the contacts.csv file
 	void showAll();
 
-	void filterList();
+	void filterName();
 	void filterList2(); //filter to search for contact by company name MR
 	void sortLName(); 
 	void AddName(); // function to add new contact MR

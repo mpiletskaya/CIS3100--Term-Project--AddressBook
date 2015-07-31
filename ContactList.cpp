@@ -78,8 +78,8 @@ void ContactList :: displayList(vector <Contact> list)
 		cout << "Sorry there are no contacts that match your request"<<endl;
 	} else {
 		//display list header
-		cout<<"________________________________________________________________________________"<<endl;
-		cout <<left <<setw(4)<<"Id"<<setw(12)<<"First Name"<<setw(12)<<"Last Name"<<setw(12)<<"Address"<<setw(14)<<"Home Phone #"<<setw(24)<<"Email"<<setw(11)<<"Position"<<setw(13)<<"Company"<<endl;
+		cout<<"_______________________________________________________________________________________"<<endl;
+		cout <<left <<setw(4)<<"Id"<<setw(12)<<"First Name"<<setw(12)<<"Last Name"<<setw(18)<<"Address"<<setw(14)<<"Home Phone #"<<setw(24)<<"Email"<<setw(11)<<"Position"<<setw(13)<<"Company"<<endl;
 		//display the contacts
 		for (size_t i= 0; i < list.size(); i++)
 		{

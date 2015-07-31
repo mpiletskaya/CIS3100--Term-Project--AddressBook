@@ -47,7 +47,7 @@ int Menu::showMenu()
 	switch(choice)
 	{
 		case 1:showAll();break;
-		case 2:filterList();break;
+		case 2:filterName();break;
 		case 3:filterList2();break; //Mel Romero
 		case 4:sortLName();break;
 		case 5:AddName(); break; //Mel Romero
@@ -68,7 +68,7 @@ void Menu::showAll()
 	cl.displayList(cl.getList());
 }
 
-void Menu::filterList()
+void Menu::filterName()
 {
 	cl.readData();
 	string input;
