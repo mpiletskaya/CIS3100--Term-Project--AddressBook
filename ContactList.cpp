@@ -2,7 +2,6 @@
  * ContactList.cpp
  * Class Definition for ContactList class
  *  Created on: July 18, 2015
- *      Author: Maria Piletskaya
  */
 
 #include "ContactList.h"
@@ -88,23 +87,6 @@ void ContactList :: displayList(vector <Contact> list)
 	}
 }
 
- vector<Contact> ContactList:: searchByLName(string lname)
-{
-	if(!flist.empty())
-	{
-		//Remove all elements from the vector 'clist'
-		flist.clear();
-	}
-	for(int i = 0; i < clist.size(); i++)
-	{
-		/* use '<= 0' here so that it's not case sensitive; it'll also count if 
-		all compared characters match but the compared string is shorter.*/
-		if (clist[i].getLastName().compare(lname)==0)
-			flist.push_back(clist[i]);
-	}
-	return flist;
-}
-
  void ContactList::sortAlphabetically()
  {
 	for (int i = 0; i < clist.size()-1; i++)
@@ -122,23 +104,28 @@ void ContactList :: displayList(vector <Contact> list)
 	}
  }
 
- //Mel Romero
- vector<Contact> ContactList:: searchByCName(string lname)
+  vector<Contact> ContactList:: search(string input, searchParam searchParameter)
 {
-	if(!flist.empty())
+	//Remove all elements from filtered list
+	flist.clear();
+	//depends on searchParam: either last name, id or company name
+	string valueToCompare; 
+
+	for(size_t i = 0; i < clist.size(); i++)
 	{
-		//Remove all elements from the vector 'clist'
-		flist.clear();
+		Contact contact = clist[i];
+		switch (searchParameter)
+	{
+	case CId: valueToCompare = to_string(contact.getId());break;
+	case CName: valueToCompare = contact.getCompany();break;//Mel Romero
+	case LName: valueToCompare = contact.getLastName();break;
 	}
-	for(int i = 0; i < clist.size(); i++)
-	{
-		/* use '<= 0' here so that it's not case sensitive; it'll also count if 
-		all compared characters match but the compared string is shorter.*/
-		if (clist[i].getCompany().compare(lname)==0)
-			flist.push_back(clist[i]);
+		if (valueToCompare.compare(input)==0)
+			flist.push_back(contact);
 	}
 	return flist;
 }
+
 
  //Mel Romero
  void ContactList:: AddContact(){

@@ -2,11 +2,8 @@
  * Contact.cpp
  * Class definitions for Contact class
  *  Created on: July 18, 2015
- *      Author: Maria Piletskaya
  */
-//one more test
-//test i will like to try a nice ice cream
-// test for tutorial!
+
 #include "Contact.h"
 #include "ContactList.h"
 #include <iostream>
@@ -22,6 +19,12 @@ Contact::~Contact(void)
 }
 
 //getters
+
+int Contact :: getId()
+{
+	return id;
+}
+
 string Contact :: getFirstName()
 {
 	return firstName;

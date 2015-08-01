@@ -2,7 +2,6 @@
  * Contact.h
  * Header for Contact class
  *  Created on: July 18, 2015
- *      Author: Maria Piletskaya
  */
 
 #pragma once

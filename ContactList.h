@@ -2,7 +2,6 @@
  * ContactList.h
  * Header for ContactList class
  *  Created on: July 18, 2015
- *      Author: Maria Piletskaya
  */
 
 #pragma once
@@ -16,7 +15,11 @@ private:
 public:
 	ContactList(void);
 	~ContactList(void);
+
+	enum searchParam{CId, CName, LName};
 	
+
+
 	
 	//accessor functions
 	std::vector<Contact> getList();
@@ -28,11 +31,8 @@ public:
 	//displays a list of contacts passed to this function
 	void displayList(std::vector <Contact>);
 
-	//does a search by last name
-	std::vector<Contact> searchByLName(std::string);
-
-	//does a search by company name MR
-	std::vector<Contact> searchByCName(std::string);
+	//one method for doing search(by LName, CompanyName, Id)
+	std::vector<Contact> search(std::string, searchParam);
 
 	//sort the list of contacts alphabetically by last name(ascending)
 	void sortAlphabetically();

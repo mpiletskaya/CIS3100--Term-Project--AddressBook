@@ -2,7 +2,6 @@
  * Menu.cpp
  * Class definitions for Menu class
  *  Created on: July 21, 2015
- *      Author: Maria Piletskaya
  */
 #include "Menu.h"
 #include "ContactList.h"
@@ -51,7 +50,7 @@ int Menu::showMenu()
 		case 3:filterList2();break; //Mel Romero
 		case 4:sortLName();break;
 		case 5:AddName(); break; //Mel Romero
-		case 6:;break;
+		case 6:editContact();break;
 		case 7:;break;
 		case 8:goto stop;break;
 		default:cout <<"Goodbye ..";
@@ -75,7 +74,7 @@ void Menu::filterName()
 	cout << "Enter a last name(Case sensitive): ";
 	cin >> input;
 
-	cl.displayList(cl.searchByLName(input));
+	cl.displayList(cl.search(input, cl.LName));
 }
 
 void Menu::sortLName()
@@ -92,7 +91,8 @@ void Menu::filterList2() // Mel Romero
 	cout << "Enter a company name(Case sensitive): ";
 	cin >> input;
 
-	cl.displayList(cl.searchByCName(input));
+	cl.displayList(cl.search(input, cl.CName));
+cout<<"company"<<endl;
 }
 
 void Menu::AddName() // Mel Romero
@@ -100,4 +100,15 @@ void Menu::AddName() // Mel Romero
 	cl.readData();
 	cl.displayList(cl.getList());
 	cl.AddContact();
+}
+
+void Menu::editContact()
+{
+	cl.readData();
+	cl.displayList(cl.getList());
+	string input;
+	cout << "Enter an id of a contact you want to edit: ";
+	cin >> input;
+
+	cl.displayList(cl.search(input, cl.CId));
 }
