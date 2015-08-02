@@ -53,5 +53,7 @@ public:
 
 	//define the way of presenting a record of our addressbook
 	void displayContact(); 
+
+	int editContact();
 };
 

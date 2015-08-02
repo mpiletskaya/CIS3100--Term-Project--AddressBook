@@ -84,12 +84,55 @@ void Contact::setJob(string field)
 }
 
 //specify how the contact will be displayed in console window
+//changed the spacing to allow more room MR
 void Contact :: displayContact(){
 	cout <<left <<setw(4)<<id<<setw(12)<< firstName<<setw(12)<<lastName<<setw(18)<<Address <<setw(14) <<homePhone<<setw(24)<<email<<setw(11)<< jobTitle<<setw(13)<<companyName<<endl;
 }
 
-//changed the spacing to allow more room MR
 
+
+int Contact :: editContact()
+{
+		int choice;
+		string input; 
+	start_menu:
+
+	  cout << " _____________________________________" << endl;
+      cout << "|     What do you want to change?     |" << endl;
+      cout << "|                                     |" << endl;
+      cout << "| 1. Edit last name                   |" << endl;
+      cout << "| 2- Edit first name                  |" << endl;
+	  cout << "| 3- Edit address                     |" << endl;
+	  cout << "| 4- Edit phone number                |" << endl;
+	  cout << "| 5- Edit email                       |" << endl;
+	  cout << "| 6- Edit company name                |" << endl;
+	  cout << "| 7- Edit job title                   |" << endl;
+	  cout << "| 8- Stop editing                     |" << endl;
+      cout << "|_____________________________________|" << endl;
+		cin >> choice;
+		// process the menu option entered by the user
+		
+	if(choice != 8)
+	{
+		cout << "Enter New Information: " << endl;
+		cin >> input;
+	}
+
+	switch(choice)
+	{
+		case 1:setLastName(input);break;
+		case 2:setFirstName(input); break;
+		case 3:setAddress(input); break;
+		case 4:setHomePhone(input);break;
+		case 5:setEmail(input);break; 
+		case 6:setCompany(input);break;
+		case 7:setJob(input);break;
+		case 8:goto stop;break;
+	}
+	goto start_menu;
+stop: 
+	return 0;
+}
 
 
 

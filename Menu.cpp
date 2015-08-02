@@ -109,6 +109,7 @@ void Menu::editContact()
 	string input;
 	cout << "Enter an id of a contact you want to edit: ";
 	cin >> input;
-
-	cl.displayList(cl.search(input, cl.CId));
+	vector <Contact> fl = cl.search(input, cl.CId);
+	cl.displayList(fl);
+	cl.getList()[fl[0].getId()].editContact();
 }
