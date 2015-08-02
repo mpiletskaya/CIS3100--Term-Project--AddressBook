@@ -67,11 +67,7 @@ int Menu::showMenu()
 
 void Menu::showAll()
 {
-	
-	//cout << cl.getList() << endl;
-	//cout << cl.getList() << endl;
-	vector<Contact> list = cl.getList();
-	cl.displayList(list);
+	cl.displayList(cl.getList());
 }
 
 void Menu::filterName()
@@ -114,5 +110,5 @@ void Menu::editContactList()
 	int id = fl[0].getId();
 	cl.getList()[id-1].editContact();
 	cl.displayList(cl.getList());
-	//cl.rewriteList("example.txt");
+	cl.rewriteList("contacts.csv");
 }
