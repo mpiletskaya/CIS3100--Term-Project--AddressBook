@@ -15,6 +15,8 @@ ContactList cl;
 
 Menu::Menu(void)
 {
+	//read data from file once menu instance is created
+	cl.readData("contacts.csv");
 }
 
 
@@ -41,6 +43,8 @@ int Menu::showMenu()
       cout << "|_____________________________________|" << endl;
 	
 		cin >> choice;
+		//clears cin buffer. In other words, if you try to input some text with spaces, we'd clear unnecessary part
+		fflush(stdin);
 
 // process the menu option entered by the user
 	switch(choice)
@@ -50,7 +54,7 @@ int Menu::showMenu()
 		case 3:filterList2();break; //Mel Romero
 		case 4:sortLName();break;
 		case 5:AddName(); break; //Mel Romero
-		case 6:editContact();break;
+		case 6:editContactList();break;
 		case 7:;break;
 		case 8:goto stop;break;
 		default:cout <<"Goodbye ..";
@@ -63,13 +67,15 @@ int Menu::showMenu()
 
 void Menu::showAll()
 {
-	cl.readData();
-	cl.displayList(cl.getList());
+	
+	//cout << cl.getList() << endl;
+	//cout << cl.getList() << endl;
+	vector<Contact> list = cl.getList();
+	cl.displayList(list);
 }
 
 void Menu::filterName()
 {
-	cl.readData();
 	string input;
 	cout << "Enter a last name(Case sensitive): ";
 	cin >> input;
@@ -79,14 +85,11 @@ void Menu::filterName()
 
 void Menu::sortLName()
 {
-	cl.readData();
-	cl.sortAlphabetically();
-	cl.displayList(cl.getList());
+	cl.displayList(cl.sortAlphabetically());
 }
 
 void Menu::filterList2() // Mel Romero
 {
-	cl.readData();
 	string input;
 	cout << "Enter a company name(Case sensitive): ";
 	cin >> input;
@@ -97,19 +100,19 @@ cout<<"company"<<endl;
 
 void Menu::AddName() // Mel Romero
 {
-	cl.readData();
 	cl.displayList(cl.getList());
 	cl.AddContact();
 }
 
-void Menu::editContact()
+void Menu::editContactList()
 {
-	cl.readData();
 	cl.displayList(cl.getList());
 	string input;
 	cout << "Enter an id of a contact you want to edit: ";
 	cin >> input;
 	vector <Contact> fl = cl.search(input, cl.CId);
-	cl.displayList(fl);
-	cl.getList()[fl[0].getId()].editContact();
+	int id = fl[0].getId();
+	cl.getList()[id-1].editContact();
+	cl.displayList(cl.getList());
+	//cl.rewriteList("example.txt");
 }

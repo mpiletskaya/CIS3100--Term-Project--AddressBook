@@ -86,7 +86,7 @@ void Contact::setJob(string field)
 //specify how the contact will be displayed in console window
 //changed the spacing to allow more room MR
 void Contact :: displayContact(){
-	cout <<left <<setw(4)<<id<<setw(12)<< firstName<<setw(12)<<lastName<<setw(18)<<Address <<setw(14) <<homePhone<<setw(24)<<email<<setw(11)<< jobTitle<<setw(13)<<companyName<<endl;
+	cout <<left <<setw(4)<<id<<setw(12)<< firstName<<setw(12)<<lastName<<setw(14) <<homePhone<<setw(18)<<Address <<setw(24)<<email<<setw(11)<< jobTitle<<setw(13)<<companyName<<endl;
 }
 
 
@@ -102,37 +102,48 @@ int Contact :: editContact()
       cout << "|                                     |" << endl;
       cout << "| 1. Edit last name                   |" << endl;
       cout << "| 2- Edit first name                  |" << endl;
-	  cout << "| 3- Edit address                     |" << endl;
-	  cout << "| 4- Edit phone number                |" << endl;
+	  cout << "| 3- Edit phone number                |" << endl;
+	  cout << "| 4- Edit address                     |" << endl;
 	  cout << "| 5- Edit email                       |" << endl;
 	  cout << "| 6- Edit company name                |" << endl;
 	  cout << "| 7- Edit job title                   |" << endl;
 	  cout << "| 8- Stop editing                     |" << endl;
       cout << "|_____________________________________|" << endl;
 		cin >> choice;
+		//clears cin buffer. In other words, if you try to input some text with spaces, we'd clear unnecessary part
+		fflush(stdin);
 		// process the menu option entered by the user
 		
-	if(choice != 8)
+	if(choice < 8)
 	{
 		cout << "Enter New Information: " << endl;
-		cin >> input;
+		getline(cin, input);
+		//cin >> input;
+		//clears cin buffer. In other words, if you try to input some text with spaces, we'd clear unnecessary part
+		fflush(stdin);
 	}
 
 	switch(choice)
 	{
 		case 1:setLastName(input);break;
 		case 2:setFirstName(input); break;
-		case 3:setAddress(input); break;
-		case 4:setHomePhone(input);break;
+		case 3:setHomePhone(input);break;
+		case 4:setAddress(input); break;
 		case 5:setEmail(input);break; 
 		case 6:setCompany(input);break;
 		case 7:setJob(input);break;
 		case 8:goto stop;break;
+		default:goto stop;break;
 	}
 	goto start_menu;
 stop: 
 	return 0;
 }
 
-
+string Contact :: writeContact()
+{
+	string c  = ",";
+	string s = to_string(id) + c + firstName + c + lastName  + c + homePhone + c + Address + c +email + c + jobTitle + c + companyName + "\n";
+	return s;
+}
 

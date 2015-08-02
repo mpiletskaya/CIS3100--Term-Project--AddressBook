@@ -22,23 +22,26 @@ public:
 
 	
 	//accessor functions
-	std::vector<Contact> getList();
+	std::vector<Contact> &getList();
 	void setList(std::vector <Contact> clist);
 
 	//reads the contacts.csv file
-	void readData();
+	void readData(std:: string filename);
 
 	//displays a list of contacts passed to this function
-	void displayList(std::vector <Contact>);
+	void displayList(std::vector <Contact> list);
 
 	//one method for doing search(by LName, CompanyName, Id)
-	std::vector<Contact> search(std::string, searchParam);
+	std::vector<Contact> & search(std::string, searchParam);
 
 	//sort the list of contacts alphabetically by last name(ascending)
-	void sortAlphabetically();
+	std::vector<Contact> sortAlphabetically();
 
 	//adds a new contact MR
 	void AddContact();
+
+	//rewrite contacts to a file
+	void rewriteList(std::string);
 
 };
 

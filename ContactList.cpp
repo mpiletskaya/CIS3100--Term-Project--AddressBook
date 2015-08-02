@@ -22,20 +22,18 @@ ContactList::~ContactList(void)
 {
 }
 
-vector<Contact> ContactList::getList()
+vector<Contact>& ContactList::getList()
 {
 	return clist;
 }
 
-void ContactList::readData(){
-	ifstream myfile ("contacts.csv"); //the file with data
+void ContactList::readData(string filename){
+	ifstream myfile (filename); //the file with data
 	string line; 
 	string field;
-	if(!clist.empty())
-	{
-		//Remove all elements from the vector 'clist'
-		clist.clear();
-	}
+
+	//Remove all elements from the vector 'clist'
+	clist.clear();
   if (myfile.is_open())
   {
     while ( getline (myfile,line) ) // take one line
@@ -78,7 +76,7 @@ void ContactList :: displayList(vector <Contact> list)
 	} else {
 		//display list header
 		cout<<"_______________________________________________________________________________________"<<endl;
-		cout <<left <<setw(4)<<"Id"<<setw(12)<<"First Name"<<setw(12)<<"Last Name"<<setw(18)<<"Address"<<setw(14)<<"Home Phone #"<<setw(24)<<"Email"<<setw(11)<<"Position"<<setw(13)<<"Company"<<endl;
+		cout <<left <<setw(4)<<"Id"<<setw(12)<<"First Name"<<setw(12)<<"Last Name"<<setw(14)<<"Home Phone #"<<setw(18)<<"Address"<<setw(24)<<"Email"<<setw(11)<<"Position"<<setw(13)<<"Company"<<endl;
 		//display the contacts
 		for (size_t i= 0; i < list.size(); i++)
 		{
@@ -87,24 +85,42 @@ void ContactList :: displayList(vector <Contact> list)
 	}
 }
 
- void ContactList::sortAlphabetically()
+vector<Contact> ContactList::sortAlphabetically()
  {
-	for (int i = 0; i < clist.size()-1; i++)
+	// Copy list to sort
+	vector<Contact> list  = clist;
+
+	for (int i = 0; i < list.size()-1; i++)
 	{
 		Contact temp;
-		for (int n = 0; n < clist.size()-1; n++)
+		for (int n = 0; n < list.size()-1; n++)
 		{
-			if (clist[n].getLastName() > clist[n+1].getLastName()) 
+			if (list[n].getLastName() > list[n+1].getLastName()) 
 			{
-				temp = clist[n];
-				clist[n]  = clist[n+1];
-				clist[n+1] = temp;
+				temp = list[n];
+				list[n]  = list[n+1];
+				list[n+1] = temp;
 			}
 		}
 	}
+	return list;
  }
 
-  vector<Contact> ContactList:: search(string input, searchParam searchParameter)
+ void ContactList:: rewriteList(string fname)
+{
+	//ofstream myfile;
+	//myfile.open ("contacts.csv");
+	ofstream myfile(fname);
+	for (size_t i = 0; i < clist.size();i++)
+	{
+		myfile << clist[i].writeContact();
+	}
+	myfile.close();
+}
+
+
+
+  vector<Contact> & ContactList:: search(string input, searchParam searchParameter)
 {
 	//Remove all elements from filtered list
 	flist.clear();
@@ -115,11 +131,11 @@ void ContactList :: displayList(vector <Contact> list)
 	{
 		Contact contact = clist[i];
 		switch (searchParameter)
-	{
-	case CId: valueToCompare = to_string(contact.getId());break;
-	case CName: valueToCompare = contact.getCompany();break;//Mel Romero
-	case LName: valueToCompare = contact.getLastName();break;
-	}
+		{
+			case CId: valueToCompare = to_string(contact.getId());break;
+			case CName: valueToCompare = contact.getCompany();break;//Mel Romero
+			case LName: valueToCompare = contact.getLastName();break;
+		}
 		if (valueToCompare.compare(input)==0)
 			flist.push_back(contact);
 	}
@@ -165,3 +181,4 @@ void ContactList :: displayList(vector <Contact> list)
 	 } while (cont == 'y');
 		 file.close();
  }
+

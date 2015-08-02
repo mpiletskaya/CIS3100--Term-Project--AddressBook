@@ -30,6 +30,6 @@ public:
 	void AddName();
 	
 	//function to edit a contact
-	void editContact();
+	void editContactList();
 };
 

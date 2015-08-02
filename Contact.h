@@ -55,5 +55,7 @@ public:
 	void displayContact(); 
 
 	int editContact();
+
+	std::string writeContact();
 };
 
