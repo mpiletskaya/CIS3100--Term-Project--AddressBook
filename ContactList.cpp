@@ -146,7 +146,7 @@ vector<Contact> ContactList::sortAlphabetically()
  //Mel Romero
  void ContactList:: AddContact(){
 	
-	 string newcontact, firstname, lastname, address, homephone, email, jobtitle,company;
+	 string newcontact, id, firstname, lastname, address, homephone, email, jobtitle,company;
 	 
 	 char cont = 'y';
 	 
@@ -161,6 +161,8 @@ vector<Contact> ContactList::sortAlphabetically()
 	do
 { 
 		cout << "Enter a new contact (id, first name, last name, address, email, home phone, job title, company" << endl;
+		cout << "Enter your new contact's id: " << endl;
+		cin >> id;
 		cout << "Enter your new contact's first name: " << endl;
 		cin >> firstname;
 		cout << "Enter your new contact's last name: " << endl;
@@ -173,7 +175,7 @@ vector<Contact> ContactList::sortAlphabetically()
 		cin >> jobtitle;
 		cout << "Enter your new contact's company: " << endl;
 		cin >> company;
-		newcontact = firstname+","+lastname+","+address+","+email+","+homephone+","+jobtitle+","+company;
+		newcontact = id+","+firstname+","+lastname+","+address+","+email+","+homephone+","+jobtitle+","+company;
 		file << newcontact << endl;
 		cout << "Enter another grade? (y|n) ";
 		cin >> cont;
@@ -182,3 +184,14 @@ vector<Contact> ContactList::sortAlphabetically()
 		 file.close();
  }
 
+ void ContactList:: deleteList(string fname) // Remove contacts MR
+{
+	//ofstream myfile;
+	//myfile.open ("contacts.csv");
+	ofstream myfile(fname);
+	for (size_t i = 0; i < clist.size();i++)
+	{
+		myfile << clist[i].writeContact2();
+	}
+	myfile.close();
+}
