@@ -57,5 +57,10 @@ public:
 	int editContact();
 
 	std::string writeContact();
+
+	//Used by the remove function MR
+	int deleteContact();
+
+	std::string writeContact2();
 };
 

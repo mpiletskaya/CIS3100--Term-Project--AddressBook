@@ -147,3 +147,53 @@ string Contact :: writeContact()
 	return s;
 }
 
+int Contact ::deleteContact() // replacing strings with empty space
+{
+		int choice;
+		string input; 
+	start_menu:
+
+	  cout << " _______________________________________________________" << endl;
+      cout << "|    Are you sure you want to delete this contact?      |" << endl;
+      cout << "|                                                       |" << endl;
+      cout << "| 1. Yes                                                |" << endl;
+      cout << "| 8- No                                                 |" << endl;
+	  cout << "|                                                       |" << endl;
+      cout << "|_______________________________________________________|" << endl;
+		cin >> choice;
+		//clears cin buffer. In other words, if you try to input some text with spaces, we'd clear unnecessary part
+		fflush(stdin);
+		// process the menu option entered by the user
+		
+	if(choice < 8)
+	{
+		cout << "Enter New Information: " << endl;
+		string input = " ";
+		//cin >> input;
+		//clears cin buffer. In other words, if you try to input some text with spaces, we'd clear unnecessary part
+		fflush(stdin);
+	}
+
+	switch(choice)
+	{
+		case 1:setLastName(input);
+		case 2:setFirstName(input); 
+		case 3:setHomePhone(input);
+		case 4:setAddress(input); 
+		case 5:setEmail(input);
+		case 6:setCompany(input);
+		case 7:setJob(input);
+		case 8:goto stop;break;
+		default:goto stop;break;
+	}
+	goto start_menu;
+stop: 
+	return 0;
+}
+
+string Contact :: writeContact2() //used by the remove function
+{
+	string c  = ",";
+	string s = to_string(id) + c + firstName + c + lastName  + c + homePhone + c + Address + c +email + c + jobTitle + c + companyName + "\n";
+	return s;
+}

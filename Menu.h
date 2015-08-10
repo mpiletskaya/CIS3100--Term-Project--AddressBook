@@ -31,5 +31,8 @@ public:
 	
 	//function to edit a contact
 	void editContactList();
+
+	//function to remove a contact
+	void removeContactList();
 };
 

@@ -43,5 +43,9 @@ public:
 	//rewrite contacts to a file
 	void rewriteList(std::string);
 
+	//deletes contacts to a file
+	void deleteList(std::string);
+
+
 };
 

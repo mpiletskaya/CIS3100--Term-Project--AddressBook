@@ -55,7 +55,7 @@ int Menu::showMenu()
 		case 4:sortLName();break;
 		case 5:AddName(); break; //Mel Romero
 		case 6:editContactList();break;
-		case 7:;break;
+		case 7:removeContactList();break;
 		case 8:goto stop;break;
 		default:cout <<"Goodbye ..";
 					goto stop;
@@ -111,4 +111,17 @@ void Menu::editContactList()
 	cl.getList()[id-1].editContact();
 	cl.displayList(cl.getList());
 	cl.rewriteList("contacts.csv");
+}
+
+void Menu::removeContactList()// Mel Romero
+{
+	cl.displayList(cl.getList());
+	string input;
+	cout << "Enter an id of a contact you want to edit: ";
+	cin >> input;
+	vector <Contact> fl = cl.search(input, cl.CId);
+	int id = fl[0].getId();
+	cl.getList()[id-1].deleteContact();
+	cl.displayList(cl.getList());
+	cl.deleteList("contacts.csv");
 }
